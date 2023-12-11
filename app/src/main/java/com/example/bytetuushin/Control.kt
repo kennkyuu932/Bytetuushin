@@ -142,7 +142,7 @@ object Control {
             Log.d(TAG, "ClientReceive: try")
             cli_res_mes=ByteArray(res_size)
             cli_Dis= DataInputStream(BufferedInputStream(cli_socket?.getInputStream()))
-            cli_Dis?.read(cli_res_mes,0,res_size)//nullになってる?
+            cli_Dis?.read(cli_res_mes,0,res_size)
             Log.d(TAG, "ClientReceive: message ${cli_res_mes?.let { String(it) }}")
         }catch (_:Exception){}
         Log.d(TAG, "ClientReceive: return")
@@ -150,7 +150,7 @@ object Control {
 
 
     //
-    
+
     fun ServerDisConnect(){
         Log.d(TAG, "ServerDisConnect: Start")
         ser_serversoc?.close()

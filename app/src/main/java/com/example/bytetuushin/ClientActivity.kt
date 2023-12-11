@@ -62,6 +62,8 @@ class ClientActivity : AppCompatActivity() {
                     val secondlistsize=Control.cli_res_flag
                     Control.cli_res_flag?.let { Control.ClientSendFlag(it) }
                     while (j<secondlistsize!!){
+                        //フラグの初期化
+                        Control.cli_res_flag=null
                         Control.ClientReceiveFlag()
                         val thirdlistsize=Control.cli_res_flag
                         Log.d(TAG, "onCreate: thirdlistsize ${thirdlistsize}")
@@ -70,11 +72,9 @@ class ClientActivity : AppCompatActivity() {
                             Control.ClientReceive(thirdlistsize)
                         }
                         j++
-                        Control.cli_res_mes?.let { cli_res_second.add(it) }
-                        val res_size=Control.cli_res_mes?.size//nullになる?
-                        if (res_size != null) {
-                            Control.ClientSendFlag(res_size)
-                        }
+                        Control.cli_res_mes.let { cli_res_second.add(it) }
+                        val res_size= Control.cli_res_mes.size
+                        Control.ClientSendFlag(res_size)
                     }
                     i++
                     cli_res_list.add(cli_res_second)
